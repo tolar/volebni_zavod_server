@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.volby.cz/ps/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="VYSLEDKY" type="ps:VYSLEDKYType" xmlns:ps="http://www.volby.cz/ps/"/>
+  <xs:complexType name="UCASTType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="OKRSKY_CELKEM" use="optional"/>
+        <xs:attribute type="xs:string" name="OKRSKY_ZPRAC" use="optional"/>
+        <xs:attribute type="xs:string" name="OKRSKY_ZPRAC_PROC" use="optional"/>
+        <xs:attribute type="xs:string" name="ZAPSANI_VOLICI" use="optional"/>
+        <xs:attribute type="xs:string" name="VYDANE_OBALKY" use="optional"/>
+        <xs:attribute type="xs:string" name="UCAST_PROC" use="optional"/>
+        <xs:attribute type="xs:string" name="ODEVZDANE_OBALKY" use="optional"/>
+        <xs:attribute type="xs:string" name="PLATNE_HLASY" use="optional"/>
+        <xs:attribute type="xs:string" name="PLATNE_HLASY_PROC" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="HODNOTY_STRANAType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="HLASY" use="optional"/>
+        <xs:attribute type="xs:string" name="PROC_HLASU" use="optional"/>
+        <xs:attribute type="xs:string" name="MANDATY" use="optional"/>
+        <xs:attribute type="xs:string" name="PROC_MANDATU" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="POSLANECType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="CIS_KRAJ" use="optional"/>
+        <xs:attribute type="xs:string" name="PORADOVE_CISLO" use="optional"/>
+        <xs:attribute type="xs:string" name="JMENO" use="optional"/>
+        <xs:attribute type="xs:string" name="PRIJMENI" use="optional"/>
+        <xs:attribute type="xs:string" name="TITULPRED" use="optional"/>
+        <xs:attribute type="xs:string" name="TITULZA" use="optional"/>
+        <xs:attribute type="xs:string" name="PREDNOSTNI_HLASY" use="optional"/>
+        <xs:attribute type="xs:string" name="PREDNOSTNI_HLASY_PROC" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="STRANAType">
+    <xs:sequence>
+      <xs:element type="ps:HODNOTY_STRANAType" name="HODNOTY_STRANA" xmlns:ps="http://www.volby.cz/ps/"/>
+      <xs:element type="ps:POSLANECType" name="POSLANEC" maxOccurs="unbounded" minOccurs="0" xmlns:ps="http://www.volby.cz/ps/"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="KSTRANA" use="optional"/>
+    <xs:attribute type="xs:string" name="NAZ_STR" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="KRAJType">
+    <xs:sequence>
+      <xs:element type="ps:UCASTType" name="UCAST" xmlns:ps="http://www.volby.cz/ps/"/>
+      <xs:element type="ps:STRANAType" name="STRANA" maxOccurs="unbounded" minOccurs="0" xmlns:ps="http://www.volby.cz/ps/"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="CIS_KRAJ" use="optional"/>
+    <xs:attribute type="xs:string" name="NAZ_KRAJ" use="optional"/>
+    <xs:attribute type="xs:string" name="POCMANDATU" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="CRType">
+    <xs:sequence>
+      <xs:element type="ps:UCASTType" name="UCAST" xmlns:ps="http://www.volby.cz/ps/"/>
+      <xs:element type="ps:STRANAType" name="STRANA" maxOccurs="unbounded" minOccurs="0" xmlns:ps="http://www.volby.cz/ps/"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VYSLEDKYType">
+    <xs:sequence>
+      <xs:element type="ps:KRAJType" name="KRAJ" maxOccurs="unbounded" minOccurs="0" xmlns:ps="http://www.volby.cz/ps/"/>
+      <xs:element type="ps:CRType" name="CR" xmlns:ps="http://www.volby.cz/ps/"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="DATUM_CAS_GENEROVANI"/>
+  </xs:complexType>
+</xs:schema>

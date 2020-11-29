@@ -2,9 +2,13 @@ package cz.vaclavtolar.volebnizavod.server;
 
 import cz.vaclavtolar.volebnizavod.server.dto.Election;
 import cz.vaclavtolar.volebnizavod.server.dto.Elections;
+import cz.vaclavtolar.volebnizavod.server.jaxb.VYSLEDKYType;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -43,9 +47,16 @@ public class DataService {
                             }
                             in.close();
                             election.setData(content.toString());
+
+                            JAXBContext jaxbContext = JAXBContext.newInstance(VYSLEDKYType.class);
+
+                            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+                            Object object = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getData()));
+                            object.toString();
                         }
                         con.disconnect();
                     } catch (Exception e) {
+                        e.printStackTrace();
                         // TODO log
                     }
                 }
