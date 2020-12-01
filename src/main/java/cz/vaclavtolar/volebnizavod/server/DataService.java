@@ -2,7 +2,7 @@ package cz.vaclavtolar.volebnizavod.server;
 
 import cz.vaclavtolar.volebnizavod.server.dto.Election;
 import cz.vaclavtolar.volebnizavod.server.dto.Elections;
-import cz.vaclavtolar.volebnizavod.server.jaxb.VYSLEDKYType;
+import cz.vaclavtolar.volebnizavod.server.jaxb.VYSLEDKY;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +48,7 @@ public class DataService {
                             in.close();
                             election.setData(content.toString());
 
-                            JAXBContext jaxbContext = JAXBContext.newInstance(VYSLEDKYType.class);
+                            JAXBContext jaxbContext = JAXBContext.newInstance(VYSLEDKY.class);
 
                             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                             Object object = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getData()));

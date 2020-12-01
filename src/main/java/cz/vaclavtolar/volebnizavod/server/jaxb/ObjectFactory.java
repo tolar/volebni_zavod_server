@@ -1,10 +1,7 @@
 
 package cz.vaclavtolar.volebnizavod.server.jaxb;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 
 /**
@@ -24,7 +21,6 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _VYSLEDKY_QNAME = new QName("http://www.volby.cz/ps/", "VYSLEDKY");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cz.vaclavtolar.volebnizavod.server.jaxb
@@ -34,68 +30,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link VYSLEDKYType }
+     * Create an instance of {@link HODNOTYSTRANA }
      * 
      */
-    public VYSLEDKYType createVYSLEDKYType() {
-        return new VYSLEDKYType();
+    public HODNOTYSTRANA createHODNOTYSTRANA() {
+        return new HODNOTYSTRANA();
     }
 
     /**
-     * Create an instance of {@link STRANAType }
+     * Create an instance of {@link KRAJ }
      * 
      */
-    public STRANAType createSTRANAType() {
-        return new STRANAType();
+    public KRAJ createKRAJ() {
+        return new KRAJ();
     }
 
     /**
-     * Create an instance of {@link HODNOTYSTRANAType }
+     * Create an instance of {@link UCAST }
      * 
      */
-    public HODNOTYSTRANAType createHODNOTYSTRANAType() {
-        return new HODNOTYSTRANAType();
+    public UCAST createUCAST() {
+        return new UCAST();
     }
 
     /**
-     * Create an instance of {@link KRAJType }
+     * Create an instance of {@link STRANA }
      * 
      */
-    public KRAJType createKRAJType() {
-        return new KRAJType();
+    public STRANA createSTRANA() {
+        return new STRANA();
     }
 
     /**
-     * Create an instance of {@link UCASTType }
+     * Create an instance of {@link POSLANEC }
      * 
      */
-    public UCASTType createUCASTType() {
-        return new UCASTType();
+    public POSLANEC createPOSLANEC() {
+        return new POSLANEC();
     }
 
     /**
-     * Create an instance of {@link CRType }
+     * Create an instance of {@link VYSLEDKY }
      * 
      */
-    public CRType createCRType() {
-        return new CRType();
+    public VYSLEDKY createVYSLEDKY() {
+        return new VYSLEDKY();
     }
 
     /**
-     * Create an instance of {@link POSLANECType }
+     * Create an instance of {@link CR }
      * 
      */
-    public POSLANECType createPOSLANECType() {
-        return new POSLANECType();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link VYSLEDKYType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.volby.cz/ps/", name = "VYSLEDKY")
-    public JAXBElement<VYSLEDKYType> createVYSLEDKY(VYSLEDKYType value) {
-        return new JAXBElement<VYSLEDKYType>(_VYSLEDKY_QNAME, VYSLEDKYType.class, null, value);
+    public CR createCR() {
+        return new CR();
     }
 
 }

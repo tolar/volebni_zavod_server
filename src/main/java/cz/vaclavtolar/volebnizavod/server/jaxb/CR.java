@@ -6,21 +6,22 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for CRType complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="CRType">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="UCAST" type="{http://www.volby.cz/ps/}UCASTType"/>
- *         &lt;element name="STRANA" type="{http://www.volby.cz/ps/}STRANAType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{http://www.volby.cz/ps/}UCAST"/>
+ *         &lt;element ref="{http://www.volby.cz/ps/}STRANA" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,26 +31,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CRType", namespace = "http://www.volby.cz/ps/", propOrder = {
+@XmlType(name = "", propOrder = {
     "ucast",
     "strana"
 })
-public class CRType {
+@XmlRootElement(name = "CR", namespace = "http://www.volby.cz/ps/")
+public class CR {
 
     @XmlElement(name = "UCAST", namespace = "http://www.volby.cz/ps/", required = true)
-    protected UCASTType ucast;
-    @XmlElement(name = "STRANA", namespace = "http://www.volby.cz/ps/")
-    protected List<STRANAType> strana;
+    protected UCAST ucast;
+    @XmlElement(name = "STRANA", namespace = "http://www.volby.cz/ps/", required = true)
+    protected List<STRANA> strana;
 
     /**
-     * Gets the value of the ucast property.
+     * VolebnÃ­ ÃºÄ\u008dast
      * 
      * @return
      *     possible object is
-     *     {@link UCASTType }
+     *     {@link UCAST }
      *     
      */
-    public UCASTType getUCAST() {
+    public UCAST getUCAST() {
         return ucast;
     }
 
@@ -58,10 +60,10 @@ public class CRType {
      * 
      * @param value
      *     allowed object is
-     *     {@link UCASTType }
+     *     {@link UCAST }
      *     
      */
-    public void setUCAST(UCASTType value) {
+    public void setUCAST(UCAST value) {
         this.ucast = value;
     }
 
@@ -83,13 +85,13 @@ public class CRType {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link STRANAType }
+     * {@link STRANA }
      * 
      * 
      */
-    public List<STRANAType> getSTRANA() {
+    public List<STRANA> getSTRANA() {
         if (strana == null) {
-            strana = new ArrayList<STRANAType>();
+            strana = new ArrayList<STRANA>();
         }
         return this.strana;
     }

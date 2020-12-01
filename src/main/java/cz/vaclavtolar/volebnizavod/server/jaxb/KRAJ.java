@@ -1,31 +1,52 @@
 
 package cz.vaclavtolar.volebnizavod.server.jaxb;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for KRAJType complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="KRAJType">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="UCAST" type="{http://www.volby.cz/ps/}UCASTType"/>
- *         &lt;element name="STRANA" type="{http://www.volby.cz/ps/}STRANAType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{http://www.volby.cz/ps/}UCAST"/>
+ *         &lt;element ref="{http://www.volby.cz/ps/}STRANA" maxOccurs="unbounded"/>
  *       &lt;/sequence>
- *       &lt;attribute name="CIS_KRAJ" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="NAZ_KRAJ" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="POCMANDATU" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="CIS_KRAJ" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+ *             &lt;minInclusive value="1"/>
+ *             &lt;maxInclusive value="14"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *       &lt;attribute name="NAZ_KRAJ" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;maxLength value="20"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *       &lt;attribute name="POCMANDATU">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+ *             &lt;totalDigits value="2"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -34,32 +55,33 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "KRAJType", namespace = "http://www.volby.cz/ps/", propOrder = {
+@XmlType(name = "", propOrder = {
     "ucast",
     "strana"
 })
-public class KRAJType {
+@XmlRootElement(name = "KRAJ", namespace = "http://www.volby.cz/ps/")
+public class KRAJ {
 
     @XmlElement(name = "UCAST", namespace = "http://www.volby.cz/ps/", required = true)
-    protected UCASTType ucast;
-    @XmlElement(name = "STRANA", namespace = "http://www.volby.cz/ps/")
-    protected List<STRANAType> strana;
-    @XmlAttribute(name = "CIS_KRAJ")
-    protected String ciskraj;
-    @XmlAttribute(name = "NAZ_KRAJ")
+    protected UCAST ucast;
+    @XmlElement(name = "STRANA", namespace = "http://www.volby.cz/ps/", required = true)
+    protected List<STRANA> strana;
+    @XmlAttribute(name = "CIS_KRAJ", required = true)
+    protected BigDecimal ciskraj;
+    @XmlAttribute(name = "NAZ_KRAJ", required = true)
     protected String nazkraj;
     @XmlAttribute(name = "POCMANDATU")
-    protected String pocmandatu;
+    protected BigDecimal pocmandatu;
 
     /**
-     * Gets the value of the ucast property.
+     * VolebnÃ­ ÃºÄ\u008dast
      * 
      * @return
      *     possible object is
-     *     {@link UCASTType }
+     *     {@link UCAST }
      *     
      */
-    public UCASTType getUCAST() {
+    public UCAST getUCAST() {
         return ucast;
     }
 
@@ -68,10 +90,10 @@ public class KRAJType {
      * 
      * @param value
      *     allowed object is
-     *     {@link UCASTType }
+     *     {@link UCAST }
      *     
      */
-    public void setUCAST(UCASTType value) {
+    public void setUCAST(UCAST value) {
         this.ucast = value;
     }
 
@@ -93,13 +115,13 @@ public class KRAJType {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link STRANAType }
+     * {@link STRANA }
      * 
      * 
      */
-    public List<STRANAType> getSTRANA() {
+    public List<STRANA> getSTRANA() {
         if (strana == null) {
-            strana = new ArrayList<STRANAType>();
+            strana = new ArrayList<STRANA>();
         }
         return this.strana;
     }
@@ -109,10 +131,10 @@ public class KRAJType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public String getCISKRAJ() {
+    public BigDecimal getCISKRAJ() {
         return ciskraj;
     }
 
@@ -121,10 +143,10 @@ public class KRAJType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public void setCISKRAJ(String value) {
+    public void setCISKRAJ(BigDecimal value) {
         this.ciskraj = value;
     }
 
@@ -157,10 +179,10 @@ public class KRAJType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public String getPOCMANDATU() {
+    public BigDecimal getPOCMANDATU() {
         return pocmandatu;
     }
 
@@ -169,10 +191,10 @@ public class KRAJType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigDecimal }
      *     
      */
-    public void setPOCMANDATU(String value) {
+    public void setPOCMANDATU(BigDecimal value) {
         this.pocmandatu = value;
     }
 

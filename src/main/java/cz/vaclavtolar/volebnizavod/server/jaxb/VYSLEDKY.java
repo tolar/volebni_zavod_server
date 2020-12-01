@@ -3,23 +3,30 @@ package cz.vaclavtolar.volebnizavod.server.jaxb;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for VYSLEDKYType complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="VYSLEDKYType">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="KRAJ" type="{http://www.volby.cz/ps/}KRAJType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="CR" type="{http://www.volby.cz/ps/}CRType"/>
+ *         &lt;element ref="{http://www.volby.cz/ps/}KRAJ" maxOccurs="14"/>
+ *         &lt;element ref="{http://www.volby.cz/ps/}CR"/>
  *       &lt;/sequence>
- *       &lt;attribute name="DATUM_CAS_GENEROVANI" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="DATUM_CAS_GENEROVANI" use="required" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -28,22 +35,23 @@ import javax.xml.bind.annotation.*;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "VYSLEDKYType", namespace = "http://www.volby.cz/ps/", propOrder = {
+@XmlType(name = "", propOrder = {
     "kraj",
     "cr"
 })
-@XmlRootElement
-public class VYSLEDKYType {
+@XmlRootElement(name = "VYSLEDKY", namespace = "http://www.volby.cz/ps/")
+public class VYSLEDKY {
 
-    @XmlElement(name = "KRAJ", namespace = "http://www.volby.cz/ps/")
-    protected List<KRAJType> kraj;
+    @XmlElement(name = "KRAJ", namespace = "http://www.volby.cz/ps/", required = true)
+    protected List<KRAJ> kraj;
     @XmlElement(name = "CR", namespace = "http://www.volby.cz/ps/", required = true)
-    protected CRType cr;
-    @XmlAttribute(name = "DATUM_CAS_GENEROVANI")
-    protected String datumcasgenerovani;
+    protected CR cr;
+    @XmlAttribute(name = "DATUM_CAS_GENEROVANI", required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar datumcasgenerovani;
 
     /**
-     * Gets the value of the kraj property.
+     * VÃ½sledky za volebnÃ­ kraj Gets the value of the kraj property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
@@ -60,13 +68,13 @@ public class VYSLEDKYType {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link KRAJType }
+     * {@link KRAJ }
      * 
      * 
      */
-    public List<KRAJType> getKRAJ() {
+    public List<KRAJ> getKRAJ() {
         if (kraj == null) {
-            kraj = new ArrayList<KRAJType>();
+            kraj = new ArrayList<KRAJ>();
         }
         return this.kraj;
     }
@@ -76,10 +84,10 @@ public class VYSLEDKYType {
      * 
      * @return
      *     possible object is
-     *     {@link CRType }
+     *     {@link CR }
      *     
      */
-    public CRType getCR() {
+    public CR getCR() {
         return cr;
     }
 
@@ -88,10 +96,10 @@ public class VYSLEDKYType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CRType }
+     *     {@link CR }
      *     
      */
-    public void setCR(CRType value) {
+    public void setCR(CR value) {
         this.cr = value;
     }
 
@@ -100,10 +108,10 @@ public class VYSLEDKYType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDATUMCASGENEROVANI() {
+    public XMLGregorianCalendar getDATUMCASGENEROVANI() {
         return datumcasgenerovani;
     }
 
@@ -112,10 +120,10 @@ public class VYSLEDKYType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDATUMCASGENEROVANI(String value) {
+    public void setDATUMCASGENEROVANI(XMLGregorianCalendar value) {
         this.datumcasgenerovani = value;
     }
 
