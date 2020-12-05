@@ -3,6 +3,7 @@ package cz.vaclavtolar.volebnizavod.server;
 import cz.vaclavtolar.volebnizavod.server.dto.Election;
 import cz.vaclavtolar.volebnizavod.server.dto.Elections;
 import cz.vaclavtolar.volebnizavod.server.jaxb.VYSLEDKY;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DataService {
 
     private Elections electionsData;
@@ -34,7 +36,7 @@ public class DataService {
     private void loadData() {
         electionsData.getElections().stream().forEach(election -> {
                     try {
-                        URL url = new URL(election.getUrl());
+                        URL url = new URL(election.getServerUrl());
                         HttpURLConnection con = (HttpURLConnection) url.openConnection();
                         con.setRequestMethod("GET");
                         if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -46,18 +48,17 @@ public class DataService {
                                 content.append(inputLine);
                             }
                             in.close();
-                            election.setData(content.toString());
+                            election.setServerXmlData(content.toString());
 
                             JAXBContext jaxbContext = JAXBContext.newInstance(VYSLEDKY.class);
 
                             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-                            Object object = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getData()));
-                            object.toString();
+                            Object parsedData = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getServerXmlData()));
+                            election.setParsedData(parsedData);
                         }
                         con.disconnect();
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        // TODO log
+                        log.error("Failed to load election data from volby.cz", e);
                     }
                 }
         );

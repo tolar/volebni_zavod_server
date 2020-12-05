@@ -6,13 +6,14 @@ public class Election {
 
     private String id;
     private LocalDate date;
-    private String url;
-    private String data;
+    private String serverUrl;
+    private String serverXmlData;
+    private Object parsedData;
 
-    public Election(String id,LocalDate date, String url) {
+    public Election(String id,LocalDate date, String serverUrl) {
         this.id = id;
         this.date = date;
-        this.url = url;
+        this.serverUrl = serverUrl;
     }
 
     public String getId() {
@@ -31,19 +32,27 @@ public class Election {
         this.date = date;
     }
 
-    public String getUrl() {
-        return url;
+    public String getServerUrl() {
+        return serverUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setServerUrl(String serverUrl) {
+        this.serverUrl = serverUrl;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setServerXmlData(String serverXmlData) {
+        this.serverXmlData = serverXmlData;
     }
 
-    public String getData() {
-        return data;
+    public String getServerXmlData() {
+        return serverXmlData;
+    }
+
+    public Object getParsedData() {
+        return parsedData;
+    }
+
+    public void setParsedData(Object parsedData) {
+        this.parsedData = parsedData;
     }
 }
