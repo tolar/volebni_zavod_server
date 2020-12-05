@@ -1,6 +1,7 @@
 package cz.vaclavtolar.volebnizavod.server.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Election {
 
@@ -9,6 +10,7 @@ public class Election {
     private String serverUrl;
     private String serverXmlData;
     private Object parsedData;
+    private LocalDateTime updated;
 
     public Election(String id,LocalDate date, String serverUrl) {
         this.id = id;
@@ -54,5 +56,13 @@ public class Election {
 
     public void setParsedData(Object parsedData) {
         this.parsedData = parsedData;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 }

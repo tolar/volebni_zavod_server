@@ -1,5 +1,5 @@
 
-package cz.vaclavtolar.volebnizavod.server.jaxb;
+package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna._2017;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;

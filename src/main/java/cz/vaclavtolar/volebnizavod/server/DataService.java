@@ -2,7 +2,7 @@ package cz.vaclavtolar.volebnizavod.server;
 
 import cz.vaclavtolar.volebnizavod.server.dto.Election;
 import cz.vaclavtolar.volebnizavod.server.dto.Elections;
-import cz.vaclavtolar.volebnizavod.server.jaxb.VYSLEDKY;
+import cz.vaclavtolar.volebnizavod.server.jaxb.snemovna._2017.VYSLEDKY;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -55,6 +56,7 @@ public class DataService {
                             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                             Object parsedData = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getServerXmlData()));
                             election.setParsedData(parsedData);
+                            election.setUpdated(LocalDateTime.now());
                         }
                         con.disconnect();
                     } catch (Exception e) {
@@ -68,8 +70,12 @@ public class DataService {
         return electionsData;
     }
 
-    public Election getElection(String id) {
-        return getElections().getElections().stream().filter(
+    public Object getElection(String id) {
+        final Election electionById = getElections().getElections().stream().filter(
                 election -> election.getId().equals(id)).findFirst().orElse(null);
+        if (electionById == null) {
+            return null;
+        }
+        return electionById.getParsedData();
     }
 }
