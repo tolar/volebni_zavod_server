@@ -55,7 +55,7 @@ public class DataService {
 
                             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                             Object parsedData = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getServerXmlData()));
-                            election.setParsedData(parsedData);
+                            election.setData(parsedData);
                             election.setUpdated(LocalDateTime.now());
                         }
                         con.disconnect();
@@ -76,6 +76,6 @@ public class DataService {
         if (electionById == null) {
             return null;
         }
-        return electionById.getParsedData();
+        return electionById.getData();
     }
 }
