@@ -1,6 +1,7 @@
 package cz.vaclavtolar.volebnizavod.server.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import lombok.Getter;
 import lombok.Setter;
 
