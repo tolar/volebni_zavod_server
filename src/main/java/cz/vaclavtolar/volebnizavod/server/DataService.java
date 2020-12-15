@@ -26,7 +26,26 @@ public class DataService {
 
     @PostConstruct
     public void initData() {
-        elections.add(new Election("1", LocalDate.of(2017, 10, 21), "https://volby.cz/pls/ps2017nss/vysledky"));
+        elections.add(
+                new Election(
+                        "1", "Sněmovna 2017",
+                        LocalDate.of(2017, 10, 21),
+                        "https://volby.cz/pls/ps2017nss/vysledky"));
+        elections.add(
+                new Election(
+                        "2", "Sněmovna 2013",
+                        LocalDate.of(2013, 10, 26),
+                        "https://volby.cz/pls/ps2013/vysledky"));
+        elections.add(
+                new Election(
+                        "3", "Sněmovna 2010",
+                        LocalDate.of(2010, 5, 29),
+                        "https://volby.cz/pls/ps2010/vysledky"));
+        elections.add(
+                new Election(
+                        "4", "Sněmovna 2006",
+                        LocalDate.of(2006, 6, 3),
+                        "https://volby.cz/pls/ps2006/vysledky"));
         loadData();
     }
 
