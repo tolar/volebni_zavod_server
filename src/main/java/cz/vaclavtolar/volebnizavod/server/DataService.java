@@ -51,33 +51,33 @@ public class DataService {
 
     private void loadData() {
         elections.stream().forEach(election -> {
-                    try {
-                        URL url = new URL(election.getServerUrl());
-                        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                        con.setRequestMethod("GET");
-                        if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                            BufferedReader in = new BufferedReader(
-                                    new InputStreamReader(con.getInputStream()));
-                            String inputLine;
-                            StringBuffer content = new StringBuffer();
-                            while ((inputLine = in.readLine()) != null) {
-                                content.append(inputLine);
-                            }
-                            in.close();
-                            election.setServerXmlData(content.toString());
-
-                            JAXBContext jaxbContext = JAXBContext.newInstance(VYSLEDKY.class);
-
-                            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-                            Object parsedData = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getServerXmlData()));
-                            election.setData(parsedData);
-                            election.setUpdated(LocalDateTime.now());
-                        }
-                        con.disconnect();
-                    } catch (Exception e) {
-                        log.error("Failed to load election data from volby.cz", e);
+            try {
+                URL url = new URL(election.getServerUrl());
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("GET");
+                if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    BufferedReader in = new BufferedReader(
+                            new InputStreamReader(con.getInputStream()));
+                    String inputLine;
+                    StringBuffer content = new StringBuffer();
+                    while ((inputLine = in.readLine()) != null) {
+                        content.append(inputLine);
                     }
+                    in.close();
+                    election.setServerXmlData(content.toString());
+
+                    JAXBContext jaxbContext = JAXBContext.newInstance(VYSLEDKY.class);
+
+                    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+                    Object parsedData = jaxbUnmarshaller.unmarshal(IOUtils.toInputStream(election.getServerXmlData()));
+                    election.setData(parsedData);
+                    election.setUpdated(LocalDateTime.now());
                 }
+                con.disconnect();
+            } catch (Exception e) {
+                log.error("Failed to load election data from volby.cz", e);
+            }
+        }
         );
     }
 
