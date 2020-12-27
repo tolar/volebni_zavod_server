@@ -1,5 +1,5 @@
 
-package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna._2017;
+package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna.cr_kraje;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

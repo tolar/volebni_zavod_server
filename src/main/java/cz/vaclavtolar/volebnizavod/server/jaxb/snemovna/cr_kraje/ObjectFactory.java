@@ -1,5 +1,5 @@
 
-package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna._2017;
+package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna.cr_kraje;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

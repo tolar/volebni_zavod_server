@@ -1,7 +1,7 @@
 package cz.vaclavtolar.volebnizavod.server;
 
 import cz.vaclavtolar.volebnizavod.server.dto.Election;
-import cz.vaclavtolar.volebnizavod.server.jaxb.snemovna._2017.VYSLEDKY;
+import cz.vaclavtolar.volebnizavod.server.jaxb.snemovna.cr_kraje.VYSLEDKY;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;

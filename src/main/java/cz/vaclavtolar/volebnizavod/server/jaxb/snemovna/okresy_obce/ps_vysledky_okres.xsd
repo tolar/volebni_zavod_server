@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.0.3.780 (http://www.liquid-technologies.com)-->
+<schema xmlns:ps="http://www.volby.cz/ps/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.volby.cz/ps/" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="VYSLEDKY_OKRES">
+    <annotation>
+      <documentation>Výsledky voleb do Poslanecké sněmovny Parlamentu ČR - okres a obce v rámci okresu</documentation>
+    </annotation>
+    <complexType>
+      <choice>
+        <element ref="ps:CHYBA">
+          <annotation>
+            <documentation>Informace o chybě při získávání výsledků</documentation>
+          </annotation>
+        </element>
+        <sequence>
+          <element ref="ps:OKRES">
+            <annotation>
+              <documentation>Výsledky za okres</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" ref="ps:OBEC">
+            <annotation>
+              <documentation>Výsledky za obec</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </choice>
+      <attribute name="DATUM_CAS_GENEROVANI" type="dateTime" use="required" />
+    </complexType>
+  </element>
+  <element name="OKRES">
+    <annotation>
+      <documentation>Výsledky za okres</documentation>
+    </annotation>
+    <complexType>
+      <sequence>
+        <element ref="ps:UCAST" />
+        <element minOccurs="0" maxOccurs="unbounded" ref="ps:HLASY_STRANA" />
+      </sequence>
+      <attribute name="NUTS_OKRES" use="required">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="6" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="NAZ_OKRES" use="required">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="20" />
+          </restriction>
+        </simpleType>
+      </attribute>
+    </complexType>
+  </element>
+  <element name="OBEC">
+    <annotation>
+      <documentation>Výsledky za obec</documentation>
+    </annotation>
+    <complexType>
+      <sequence>
+        <element ref="ps:UCAST" />
+        <element minOccurs="0" maxOccurs="unbounded" ref="ps:HLASY_STRANA" />
+      </sequence>
+      <attribute name="CIS_OBEC" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="6" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="NAZ_OBEC" use="required">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="40" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="TYP_OBEC" use="required">
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="OBEC_BEZ_MCMO" />
+            <enumeration value="OBEC_S_MCMO" />
+            <enumeration value="MCMO" />
+          </restriction>
+        </simpleType>
+      </attribute>
+    </complexType>
+  </element>
+  <element name="UCAST">
+    <annotation>
+      <documentation>Volební účast</documentation>
+    </annotation>
+    <complexType>
+      <attribute name="OKRSKY_CELKEM" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="5" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="OKRSKY_ZPRAC" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="5" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="OKRSKY_ZPRAC_PROC" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="5" />
+            <fractionDigits value="2" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="ZAPSANI_VOLICI" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="8" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="VYDANE_OBALKY" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="8" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="UCAST_PROC" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="5" />
+            <fractionDigits value="2" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="ODEVZDANE_OBALKY" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="8" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="PLATNE_HLASY" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="8" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="PLATNE_HLASY_PROC" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="5" />
+            <fractionDigits value="2" />
+          </restriction>
+        </simpleType>
+      </attribute>
+    </complexType>
+  </element>
+  <element name="HLASY_STRANA">
+    <annotation>
+      <documentation>Výsledky za kandidátní listinu</documentation>
+    </annotation>
+    <complexType>
+      <attribute name="KSTRANA" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="2" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="HLASY" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="9" />
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name="PROC_HLASU" use="required">
+        <simpleType>
+          <restriction base="decimal">
+            <totalDigits value="5" />
+            <fractionDigits value="2" />
+          </restriction>
+        </simpleType>
+      </attribute>
+    </complexType>
+  </element>
+  <element name="CHYBA">
+    <annotation>
+      <documentation>Informace o chybě při získávání výsledků</documentation>
+    </annotation>
+    <simpleType>
+      <restriction base="string">
+        <maxLength value="100" />
+      </restriction>
+    </simpleType>
+  </element>
+</schema>
