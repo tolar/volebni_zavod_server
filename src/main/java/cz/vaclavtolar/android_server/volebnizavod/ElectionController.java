@@ -27,7 +27,7 @@ public class ElectionController {
     }
 
     @GetMapping("/elections/{id}/districts")
-    public Object getElectionDistricts(@PathVariable String id) {
+    public List<Object> getElectionDistricts(@PathVariable String id) {
         return dataService.getElectionDistricts(id);
     }
 }

@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -137,13 +138,13 @@ public class DataService {
         return electionById.getVysledkyData();
     }
 
-    public Object getElectionDistricts(String id) {
+    public List<Object> getElectionDistricts(String id) {
         final Election electionById = getElections().stream().filter(
                 election -> election.getId().equals(id)).findFirst().orElse(null);
         if (electionById == null || electionById.getOkresDataUpdated() == null) {
             return null;
         }
-        return electionById.getVysledkyOkresData().values();
+        return electionById.getVysledkyOkresData().values().stream().collect(Collectors.toList());
 
     }
 }
