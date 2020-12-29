@@ -1,4 +1,4 @@
-package cz.vaclavtolar.volebnizavod.server;
+package cz.vaclavtolar.android_server.volebnizavod.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

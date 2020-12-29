@@ -1,5 +1,5 @@
 
-package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna.cr_kraje;
+package cz.vaclavtolar.android_server.volebnizavod.jaxb.snemovna.cr_kraje;
 
 import java.util.ArrayList;
 import java.util.List;

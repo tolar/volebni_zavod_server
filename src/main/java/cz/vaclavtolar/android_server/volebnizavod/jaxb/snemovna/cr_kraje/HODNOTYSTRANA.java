@@ -1,5 +1,5 @@
 
-package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna.okresy_obce;
+package cz.vaclavtolar.android_server.volebnizavod.jaxb.snemovna.cr_kraje;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,13 +18,6 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="KSTRANA" use="required">
- *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
- *             &lt;totalDigits value="2"/>
- *           &lt;/restriction>
- *         &lt;/simpleType>
- *       &lt;/attribute>
  *       &lt;attribute name="HLASY" use="required">
  *         &lt;simpleType>
  *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
@@ -33,6 +26,21 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;/simpleType>
  *       &lt;/attribute>
  *       &lt;attribute name="PROC_HLASU" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+ *             &lt;totalDigits value="5"/>
+ *             &lt;fractionDigits value="2"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *       &lt;attribute name="MANDATY">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
+ *             &lt;totalDigits value="2"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
+ *       &lt;attribute name="PROC_MANDATU">
  *         &lt;simpleType>
  *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
  *             &lt;totalDigits value="5"/>
@@ -49,39 +57,17 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "HLASY_STRANA", namespace = "http://www.volby.cz/ps/")
-public class HLASYSTRANA {
+@XmlRootElement(name = "HODNOTY_STRANA", namespace = "http://www.volby.cz/ps/")
+public class HODNOTYSTRANA {
 
-    @XmlAttribute(name = "KSTRANA", required = true)
-    protected BigDecimal kstrana;
     @XmlAttribute(name = "HLASY", required = true)
     protected BigDecimal hlasy;
     @XmlAttribute(name = "PROC_HLASU", required = true)
     protected BigDecimal prochlasu;
-
-    /**
-     * Gets the value of the kstrana property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getKSTRANA() {
-        return kstrana;
-    }
-
-    /**
-     * Sets the value of the kstrana property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setKSTRANA(BigDecimal value) {
-        this.kstrana = value;
-    }
+    @XmlAttribute(name = "MANDATY")
+    protected BigDecimal mandaty;
+    @XmlAttribute(name = "PROC_MANDATU")
+    protected BigDecimal procmandatu;
 
     /**
      * Gets the value of the hlasy property.
@@ -129,6 +115,54 @@ public class HLASYSTRANA {
      */
     public void setPROCHLASU(BigDecimal value) {
         this.prochlasu = value;
+    }
+
+    /**
+     * Gets the value of the mandaty property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getMANDATY() {
+        return mandaty;
+    }
+
+    /**
+     * Sets the value of the mandaty property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setMANDATY(BigDecimal value) {
+        this.mandaty = value;
+    }
+
+    /**
+     * Gets the value of the procmandatu property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getPROCMANDATU() {
+        return procmandatu;
+    }
+
+    /**
+     * Sets the value of the procmandatu property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setPROCMANDATU(BigDecimal value) {
+        this.procmandatu = value;
     }
 
 }

@@ -1,7 +1,6 @@
 
-package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna.cr_kraje;
+package cz.vaclavtolar.android_server.volebnizavod.jaxb.snemovna.okresy_obce;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,27 +22,19 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.volby.cz/ps/}UCAST"/>
- *         &lt;element ref="{http://www.volby.cz/ps/}STRANA" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://www.volby.cz/ps/}HLASY_STRANA" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
- *       &lt;attribute name="CIS_KRAJ" use="required">
+ *       &lt;attribute name="NUTS_OKRES" use="required">
  *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
- *             &lt;minInclusive value="1"/>
- *             &lt;maxInclusive value="14"/>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;maxLength value="6"/>
  *           &lt;/restriction>
  *         &lt;/simpleType>
  *       &lt;/attribute>
- *       &lt;attribute name="NAZ_KRAJ" use="required">
+ *       &lt;attribute name="NAZ_OKRES" use="required">
  *         &lt;simpleType>
  *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *             &lt;maxLength value="20"/>
- *           &lt;/restriction>
- *         &lt;/simpleType>
- *       &lt;/attribute>
- *       &lt;attribute name="POCMANDATU">
- *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
- *             &lt;totalDigits value="2"/>
  *           &lt;/restriction>
  *         &lt;/simpleType>
  *       &lt;/attribute>
@@ -57,24 +48,22 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "ucast",
-    "strana"
+    "hlasystrana"
 })
-@XmlRootElement(name = "KRAJ", namespace = "http://www.volby.cz/ps/")
-public class KRAJ {
+@XmlRootElement(name = "OKRES", namespace = "http://www.volby.cz/ps/")
+public class OKRES {
 
     @XmlElement(name = "UCAST", namespace = "http://www.volby.cz/ps/", required = true)
     protected UCAST ucast;
-    @XmlElement(name = "STRANA", namespace = "http://www.volby.cz/ps/", required = true)
-    protected List<STRANA> strana;
-    @XmlAttribute(name = "CIS_KRAJ", required = true)
-    protected BigDecimal ciskraj;
-    @XmlAttribute(name = "NAZ_KRAJ", required = true)
-    protected String nazkraj;
-    @XmlAttribute(name = "POCMANDATU")
-    protected BigDecimal pocmandatu;
+    @XmlElement(name = "HLASY_STRANA", namespace = "http://www.volby.cz/ps/")
+    protected List<HLASYSTRANA> hlasystrana;
+    @XmlAttribute(name = "NUTS_OKRES", required = true)
+    protected String nutsokres;
+    @XmlAttribute(name = "NAZ_OKRES", required = true)
+    protected String nazokres;
 
     /**
-     * VolebnÃ­ ÃºÄ\u008dast
+     * Gets the value of the ucast property.
      * 
      * @return
      *     possible object is
@@ -98,104 +87,80 @@ public class KRAJ {
     }
 
     /**
-     * Gets the value of the strana property.
+     * Gets the value of the hlasystrana property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the strana property.
+     * This is why there is not a <CODE>set</CODE> method for the hlasystrana property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSTRANA().add(newItem);
+     *    getHLASYSTRANA().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link STRANA }
+     * {@link HLASYSTRANA }
      * 
      * 
      */
-    public List<STRANA> getSTRANA() {
-        if (strana == null) {
-            strana = new ArrayList<STRANA>();
+    public List<HLASYSTRANA> getHLASYSTRANA() {
+        if (hlasystrana == null) {
+            hlasystrana = new ArrayList<HLASYSTRANA>();
         }
-        return this.strana;
+        return this.hlasystrana;
     }
 
     /**
-     * Gets the value of the ciskraj property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getCISKRAJ() {
-        return ciskraj;
-    }
-
-    /**
-     * Sets the value of the ciskraj property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setCISKRAJ(BigDecimal value) {
-        this.ciskraj = value;
-    }
-
-    /**
-     * Gets the value of the nazkraj property.
+     * Gets the value of the nutsokres property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNAZKRAJ() {
-        return nazkraj;
+    public String getNUTSOKRES() {
+        return nutsokres;
     }
 
     /**
-     * Sets the value of the nazkraj property.
+     * Sets the value of the nutsokres property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNAZKRAJ(String value) {
-        this.nazkraj = value;
+    public void setNUTSOKRES(String value) {
+        this.nutsokres = value;
     }
 
     /**
-     * Gets the value of the pocmandatu property.
+     * Gets the value of the nazokres property.
      * 
      * @return
      *     possible object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public BigDecimal getPOCMANDATU() {
-        return pocmandatu;
+    public String getNAZOKRES() {
+        return nazokres;
     }
 
     /**
-     * Sets the value of the pocmandatu property.
+     * Sets the value of the nazokres property.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public void setPOCMANDATU(BigDecimal value) {
-        this.pocmandatu = value;
+    public void setNAZOKRES(String value) {
+        this.nazokres = value;
     }
 
 }

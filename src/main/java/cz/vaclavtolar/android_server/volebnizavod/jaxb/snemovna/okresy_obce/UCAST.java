@@ -1,5 +1,5 @@
 
-package cz.vaclavtolar.volebnizavod.server.jaxb.snemovna.okresy_obce;
+package cz.vaclavtolar.android_server.volebnizavod.jaxb.snemovna.okresy_obce;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
