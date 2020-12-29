@@ -100,7 +100,11 @@ public class DataService {
 
     private void loadVysledkyOkresFromServer(Election election) throws IOException, JAXBException {
         for (Okres okres: Okres.values()) {
-            URL url = new URL(election.getVysledkyOkresUrl() + "?nuts=" + okres.getCode());
+            String code = okres.getCode();
+            if (election.getDate().getYear() == 2006) {
+                code = okres.getCode2006();
+            }
+            URL url = new URL(election.getVysledkyOkresUrl() + "?nuts=" + code);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {

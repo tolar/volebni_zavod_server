@@ -74,20 +74,20 @@ public enum Okres {
     USTI_NAD_ORLICI("CZ0534"),
 
     // Vysocina
-    HAVLICKUV_BROD("CZ0631"),
-    JIHLAVA("CZ0632"),
-    PELHRIMOV("CZ0633"),
-    TREBIC("CZ0634"),
-    ZDAR_NAD_SAZAVOU("CZ0635"),
+    HAVLICKUV_BROD("CZ0631", "CZ0611"),
+    JIHLAVA("CZ0632", "CZ0612"),
+    PELHRIMOV("CZ0633", "CZ0613"),
+    TREBIC("CZ0634", "CZ0614"),
+    ZDAR_NAD_SAZAVOU("CZ0635", "CZ0615"),
 
     // Jihomoravsky kraj
-    BLANSKO("CZ0641"),
-    BRNO_MESTO("CZ0642"),
-    BRNO_VENKOV("CZ0643"),
-    BRECLAV("CZ0644"),
-    HODONIN("CZ0645"),
-    VYSKOV("CZ0646"),
-    ZNOJMO("CZ0647"),
+    BLANSKO("CZ0641", "CZ0621"),
+    BRNO_MESTO("CZ0642", "CZ0622"),
+    BRNO_VENKOV("CZ0643", "CZ0623"),
+    BRECLAV("CZ0644", "CZ0624"),
+    HODONIN("CZ0645", "CZ0625"),
+    VYSKOV("CZ0646", "CZ0626"),
+    ZNOJMO("CZ0647", "CZ0627"),
 
     // Olomoucky kraj
     JESENIK("CZ0711"),
@@ -111,8 +111,15 @@ public enum Okres {
     OSTRAVA_MESTO("CZ0806");
 
     private final String code;
+    private final String code2006;
 
     Okres(String code) {
         this.code = code;
+        this.code2006 = code;
+    }
+
+    Okres(String code, String code2006) {
+        this.code = code;
+        this.code2006 = code2006;
     }
 }
