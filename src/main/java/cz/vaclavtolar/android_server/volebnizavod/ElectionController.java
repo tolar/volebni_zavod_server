@@ -21,7 +21,7 @@ public class ElectionController {
         return dataService.getElections();
     }
 
-    @GetMapping()
+    @GetMapping("/elections/{id}")
     public Object getElection(@PathVariable String id) {
         return dataService.getElection(id);
     }
