@@ -31,7 +31,7 @@ public class DataService {
 
     @PostConstruct
     public void initData() {
-        elections.add(new Election("1", "Sněmovna 2017", LocalDate.of(2021, 10, 8), "https://volby.cz/pls/ps2021/vysledky",
+        elections.add(new Election("1", "Sněmovna 2021", LocalDate.of(2021, 10, 8), "https://volby.cz/pls/ps2021/vysledky",
                 "https://volby.cz/pls/ps2021/vysledky_okres"));
         elections.add(new Election("1", "Sněmovna 2017", LocalDate.of(2017, 10, 21), "https://volby.cz/pls/ps2017nss/vysledky",
                 "https://volby.cz/pls/ps2017nss/vysledky_okres"));
