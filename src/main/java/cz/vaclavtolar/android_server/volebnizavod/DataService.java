@@ -31,32 +31,16 @@ public class DataService {
 
     @PostConstruct
     public void initData() {
-        elections.add(
-                new Election(
-                        "1", "Sněmovna 2017",
-                        LocalDate.of(2017, 10, 21),
-                        "https://volby.cz/pls/ps2017nss/vysledky",
-                        "https://volby.cz/pls/ps2017nss/vysledky_okres"
-                        ));
-        elections.add(
-                new Election(
-                        "2", "Sněmovna 2013",
-                        LocalDate.of(2013, 10, 26),
-                        "https://volby.cz/pls/ps2013/vysledky",
-                        "https://volby.cz/pls/ps2013/vysledky_okres"));
-        elections.add(
-                new Election(
-                        "3", "Sněmovna 2010",
-                        LocalDate.of(2010, 5, 29),
-                        "https://volby.cz/pls/ps2010/vysledky",
-                        "https://volby.cz/pls/ps2010/vysledky_okres"));
-        elections.add(
-                new Election(
-                        "4", "Sněmovna 2006",
-                        LocalDate.of(2006, 6, 3),
-                        "https://volby.cz/pls/ps2006/vysledky",
-                        "https://volby.cz/pls/ps2006/vysledky_okres"
-                ));
+        elections.add(new Election("1", "Sněmovna 2017", LocalDate.of(2021, 10, 8), "https://volby.cz/pls/ps2021/vysledky",
+                "https://volby.cz/pls/ps2021/vysledky_okres"));
+        elections.add(new Election("1", "Sněmovna 2017", LocalDate.of(2017, 10, 21), "https://volby.cz/pls/ps2017nss/vysledky",
+                "https://volby.cz/pls/ps2017nss/vysledky_okres"));
+        elections.add(new Election("2", "Sněmovna 2013", LocalDate.of(2013, 10, 26), "https://volby.cz/pls/ps2013/vysledky",
+                "https://volby.cz/pls/ps2013/vysledky_okres"));
+        elections.add(new Election("3", "Sněmovna 2010", LocalDate.of(2010, 5, 29), "https://volby.cz/pls/ps2010/vysledky",
+                "https://volby.cz/pls/ps2010/vysledky_okres"));
+        elections.add(new Election("4", "Sněmovna 2006", LocalDate.of(2006, 6, 3), "https://volby.cz/pls/ps2006/vysledky",
+                "https://volby.cz/pls/ps2006/vysledky_okres"));
         loadData();
     }
 
@@ -68,8 +52,7 @@ public class DataService {
             } catch (Exception e) {
                 log.error("Failed to load election data from volby.cz", e);
             }
-        }
-        );
+        });
     }
 
     private void loadVysledkyFromServer(Election election) throws IOException, JAXBException {
@@ -77,8 +60,7 @@ public class DataService {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
             StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -99,7 +81,7 @@ public class DataService {
     }
 
     private void loadVysledkyOkresFromServer(Election election) throws IOException, JAXBException {
-        for (Okres okres: Okres.values()) {
+        for (Okres okres : Okres.values()) {
             String code = okres.getCode();
             if (election.getDate().getYear() == 2006) {
                 code = okres.getCode2006();
@@ -108,8 +90,7 @@ public class DataService {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(con.getInputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String inputLine;
                 StringBuffer content = new StringBuffer();
                 while ((inputLine = in.readLine()) != null) {
@@ -134,8 +115,7 @@ public class DataService {
     }
 
     public Object getElection(String id) {
-        final Election electionById = getElections().stream().filter(
-                election -> election.getId().equals(id)).findFirst().orElse(null);
+        final Election electionById = getElections().stream().filter(election -> election.getId().equals(id)).findFirst().orElse(null);
         if (electionById == null || electionById.getDataUpdated() == null) {
             return null;
         }
@@ -143,8 +123,7 @@ public class DataService {
     }
 
     public List<Object> getElectionDistricts(String id) {
-        final Election electionById = getElections().stream().filter(
-                election -> election.getId().equals(id)).findFirst().orElse(null);
+        final Election electionById = getElections().stream().filter(election -> election.getId().equals(id)).findFirst().orElse(null);
         if (electionById == null || electionById.getOkresDataUpdated() == null) {
             return null;
         }
