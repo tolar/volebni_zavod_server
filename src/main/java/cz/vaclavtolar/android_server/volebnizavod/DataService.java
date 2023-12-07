@@ -27,19 +27,19 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DataService {
 
-    private List<Election> elections = new ArrayList<>(10);
+    private final List<Election> elections = new ArrayList<>(10);
 
     @PostConstruct
     public void initData() {
         elections.add(new Election("1", "Sněmovna 2021", LocalDate.of(2021, 10, 8), "https://volby.cz/pls/ps2021/vysledky",
                 "https://volby.cz/pls/ps2021/vysledky_okres"));
-        elections.add(new Election("1", "Sněmovna 2017", LocalDate.of(2017, 10, 21), "https://volby.cz/pls/ps2017nss/vysledky",
+        elections.add(new Election("2", "Sněmovna 2017", LocalDate.of(2017, 10, 21), "https://volby.cz/pls/ps2017nss/vysledky",
                 "https://volby.cz/pls/ps2017nss/vysledky_okres"));
-        elections.add(new Election("2", "Sněmovna 2013", LocalDate.of(2013, 10, 26), "https://volby.cz/pls/ps2013/vysledky",
+        elections.add(new Election("3", "Sněmovna 2013", LocalDate.of(2013, 10, 26), "https://volby.cz/pls/ps2013/vysledky",
                 "https://volby.cz/pls/ps2013/vysledky_okres"));
-        elections.add(new Election("3", "Sněmovna 2010", LocalDate.of(2010, 5, 29), "https://volby.cz/pls/ps2010/vysledky",
+        elections.add(new Election("4", "Sněmovna 2010", LocalDate.of(2010, 5, 29), "https://volby.cz/pls/ps2010/vysledky",
                 "https://volby.cz/pls/ps2010/vysledky_okres"));
-        elections.add(new Election("4", "Sněmovna 2006", LocalDate.of(2006, 6, 3), "https://volby.cz/pls/ps2006/vysledky",
+        elections.add(new Election("5", "Sněmovna 2006", LocalDate.of(2006, 6, 3), "https://volby.cz/pls/ps2006/vysledky",
                 "https://volby.cz/pls/ps2006/vysledky_okres"));
         loadData();
     }
